@@ -13,11 +13,12 @@ all: $(BUILTFILES)
 
 
 
-$(BUILDDIR)/%.css: $(SRCDIR)/%.sass
+$(BUILDDIR)/%.css: $(SRCDIR)/%.scss
 	$(SASSCDIR)/sassc $< $@
 
 $(BUILDDIR)/%.html: $(SRCDIR)/%.md
 	echo "<!DOCTYPE html>" > $@
+	echo '<html class="contemporary">' > $@
 	echo "<head>" >> $@
 	echo "<title>$(PAGETITLE)</title>" >> $@
 	echo '<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">' >> $@

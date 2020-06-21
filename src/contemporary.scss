@@ -1,0 +1,68 @@
+/* original css (c) Victor Tran */
+/* define Contemporary font*/
+@font-face {
+  font-family: 'Contemporary';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Contemporary"), local("Contemporary-Regular"), url("/typeface/Contemporary-Regular.ttf");
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveInFromTop {
+  from {
+    top: -48px;
+  }
+
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.contemporary {
+  --bg-color:#282828;
+  --fg-color:white;
+  --bg-hover:#3c3c3c;
+  --bg-active:#1b1b1b;
+  --button-color:rgb(0, 0, 200);
+  --button-fg-color:white;
+  --link-color:rgb(0, 200, 255);
+  --link-active-color:rgb(255, 100, 100);
+  --sel-color:rgb(0, 80, 170);
+  --sel-hover:rgb(20, 60, 105);
+
+  &.light {
+    --bg-color:#ebebeb;
+    --fg-color:black;
+    --bg-hover:white;
+    --bg-active:#9d9d9d;
+    --link-color:rgb(0, 100, 255);
+    --link-active-color:red;
+    --sel-color:rgb(0, 200, 255);
+    --sel-hover:rgb(20, 220, 255);
+  }
+}
