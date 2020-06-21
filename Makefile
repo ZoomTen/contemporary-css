@@ -1,4 +1,5 @@
 SRCDIR := src
+FONTSDIR := fonts
 BUILDDIR := build
 
 CSS := contemporary.css
@@ -9,9 +10,10 @@ PANDOCDIR := /usr/bin
 
 BUILTFILES := $(BUILDDIR)/$(CSS) $(BUILDDIR)/index.html
 
-all: $(BUILTFILES)
+all: $(BUILTFILES) $(BUILDDIR)/$(FONTSDIR)
 
-
+$(BUILDDIR)/$(FONTSDIR): $(FONTSDIR)
+	cp -r $(FONTSDIR) $(BUILDDIR)/$(FONTSDIR)
 
 $(BUILDDIR)/%.css: $(SRCDIR)/%.scss
 	$(SASSCDIR)/sassc $< $@
@@ -31,4 +33,5 @@ $(BUILDDIR)/%.html: $(SRCDIR)/%.md
 	echo "</html>" >> $@
 
 clean:
-	rm $(BUILTFILES)
+	rm -f $(BUILTFILES)
+	rm -rf $(BUILDDIR)/$(FONTSDIR) #i'm scared
