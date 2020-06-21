@@ -149,6 +149,21 @@
         line-height: 1.7em;
     }
 
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+
+    figure{
+        border: 1px solid var(--fg-color);
+        display: inline-block;
+        margin: .2em;
+    }
+
+    figcaption{
+        margin: .2em;
+    }
+
     a{
         color: var(--link-color);
 
