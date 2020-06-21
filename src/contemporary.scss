@@ -240,6 +240,7 @@
             width: 1em;
             height: 1em;
             left: 0;
+            top: 0;
             position: absolute;
         }
 
@@ -343,6 +344,7 @@
         background-color: rgba(0,0,0,.4);
         padding: .5em  .7em;
         display: block;
+        overflow: auto;
     }
     p > code{
         display: inline-block;
