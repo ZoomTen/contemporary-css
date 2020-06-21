@@ -6,6 +6,7 @@
 .contemporary {
     --bg-color:#282828;
     --fg-color:#fff;
+    --fg-color-transparent:rgba(255,255,255,.2);
     --bg-hover:#3c3c3c;
     --bg-active:#1b1b1b;
     --link-color:rgb(0, 200, 255);
@@ -20,6 +21,7 @@
     &.light {
         --bg-color:#d2d2d2;
         --fg-color:#000;
+        --fg-color-transparent:rgba(0,0,0,.2);
         --bg-hover:#fff;
         --bg-active:#9d9d9d;
         --link-color:rgb(0, 100, 255);
