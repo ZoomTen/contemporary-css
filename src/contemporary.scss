@@ -89,8 +89,8 @@
     }
 
     %headings{
-        margin-bottom: .5em;
-        padding-bottom: .4em;
+        margin-bottom: .2em;
+        padding-bottom: .2em;
     }
 
     %button{
@@ -135,15 +135,21 @@
     }
     h2{
         @extend %headings;
-        font-size:1.25em;
+        font-size:1.4em;
+        border-bottom: 1px solid var(--fg-color-transparent);
+        display: inline-block;
     }
     h3{
         @extend %headings;
-        font-size:1em;
+        font-size:1.25em;
+    }
+
+    p, ul, ol{
+        margin:.3em 0;
+        line-height: 1.7em;
     }
 
     a{
-        text-decoration: none;
         color: var(--link-color);
 
         &:active{
