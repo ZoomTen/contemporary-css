@@ -302,6 +302,11 @@
         padding: 0;
         height: 1em;
     }
+    input[type="search"]{
+        @extend %no-style-input;
+        border-right: none;
+        border-top: none;
+    }
     input[type="submit"]{
         @extend %button;
         &:hover{
