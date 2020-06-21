@@ -313,12 +313,15 @@
 
     // code
     code{
+        font-family: monospace;
         background-color: rgba(0,0,0,.4);
         padding: .5em  .7em;
         display: block;
     }
     p > code{
         display: inline-block;
+        vertical-align: middle;
+        padding: .1em .3em;
     }
 
     // presentational divs, if you miss that grid look
