@@ -1,0 +1,330 @@
+/* original css (c) Victor Tran */
+
+@font-face
+  font-family: 'Contemporary'
+  font-style: normal
+  font-weight: 400
+  src: local("Contemporary"), local("Contemporary-Regular"), url('/typeface/Contemporary-Regular.ttf')
+
+@keyframes fadeOut
+  from
+    opacity: 1
+
+  to
+    opacity: 0
+
+@keyframes fadeIn
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+@keyframes moveInFromTop
+  from
+    top: -48px
+
+  to
+    top: 0px
+
+@keyframes spin
+  100%
+    transform: rotate(360deg)
+
+\:root
+  --bg-color:#282828
+  --fg-color:white
+  --bg-hover:#3c3c3c
+  --bg-active:#1b1b1b
+  --button-color:rgb(0, 0, 200)
+  --button-fg-color:white
+  --link-color:rgb(0, 200, 255)
+  --link-active-color:rgb(255, 100, 100)
+  --sel-color:rgb(0, 80, 170)
+  --sel-hover:rgb(20, 60, 105)
+
+html.light
+  --bg-color:#ebebeb
+  --fg-color:black
+  --bg-hover:white
+  --bg-active:#9d9d9d
+  --link-color:rgb(0, 100, 255)
+  --link-active-color:red
+  --sel-color:rgb(0, 200, 255)
+  --sel-hover:rgb(20, 220, 255)
+
+  .tint
+    filter: brightness(0%)
+
+*
+  transition: 0.25s background-color, 0.25s color
+
+#smoothState
+  animation: fadeIn 0.25s linear
+  background-color: var(--bg-color)
+
+  &.transitionOut
+    animation: fadeOut 0.25s linear
+    opacity: 0
+
+body
+  background-color: var(--bg-color)
+  color: var(--fg-color)
+  margin-left: 0px
+  margin-top: 48px
+  margin-right: 0px
+  font-family: Contemporary, sans-serif
+
+  .smoothstateLoader
+    display: flex
+    align-items: center
+    justify-content: center
+    position: fixed
+    top: 0px
+    left: 0px
+    right: 0px
+    bottom: 0px
+    z-index: -1
+
+h1, h2, h3
+  font-weight: normal
+  margin-top: 0px
+  margin-bottom: 10px
+
+h1
+  font-size: 20pt
+
+h2
+  font-size: 15pt
+
+div
+  &.mainHeader
+    position: fixed
+    top: 0px
+    left: 0px
+    right: 0px
+    height: 47px
+    border-bottom: 1px solid var(--fg-color)
+    display: flex
+    justify-content: space-between
+    align-items: center
+    background-color: var(--bg-color)
+    color: var(--fg-color)
+    animation: moveInFromTop 0.25s ease-out
+    z-index: 10000
+
+    *
+      padding-left: 8px
+      padding-right: 8px
+
+    hr
+      padding-left: 0px
+      padding-right: 0px
+
+    .smileIcon
+      float: left
+      height: 48px
+
+    .headerItem, .searchItem
+      display: block
+      padding-top: 14px
+      padding-bottom: 15px
+      cursor: pointer
+
+    .headerItem:hover, .searchItem:hover
+      background-color: var(--bg-hover)
+
+    .headerItem:active, .searchItem:active
+      background-color: var(--bg-active)
+
+    .headerItem p, .searchItem:active
+      margin: 0px
+
+    .headerItem .title
+      font-weight: bold
+
+    .searchItem
+      .title
+        font-weight: bold
+
+      div.excerpt *
+        display: inline
+        font-size: 12pt
+
+    .headerTitle
+      font-size: 20pt
+      padding-right: 100px
+
+  &.headerProject
+    display: flex
+    align-items: center
+
+  &.headerMenu
+    position: absolute
+    top: 100%
+    left: 0px
+    right: 0px
+    height: 0px
+    overflow-y: hidden
+    padding-left: 0px
+    padding-right: 0px
+    transition: 0.25s ease-out
+    display: flex
+    flex-direction: column
+    border-bottom: 1px solid var(--fg-color)
+    background-color: var(--bg-color)
+    color: var(--fg-color)
+    z-index: 10000
+
+    &.open
+      height: calc(100vh - 100%)
+      overflow-y: auto
+
+    .headerItem img.appIcon
+      float: left
+      width: 38px
+
+a
+  &.headerItem, &.searchItem
+    text-decoration: none
+    color: var(--fg-color)
+
+body.lightTheme
+  background-color: #ebebeb
+  color: black
+
+div.content
+  padding-top: 16px
+  padding-bottom: 16px
+  border-bottom: 1px solid var(--fg-color)
+  padding-left: 100px
+  padding-right: 100px
+
+  *
+    margin-top: 4px
+    margin-bottom: 4px
+
+hr
+  width: 100%
+  padding: 0px
+  margin: 0px
+  border-left: none
+  border-right: none
+
+footer
+  border-top: 1px solid var(--fg-color)
+
+a
+  text-decoration: none
+  color: var(--link-color)
+
+  &:active
+    color: var(--link-active-color)
+
+  &.button
+    display: inline-block
+    background-color: var(--button-color)
+    color: var(--button-fg-color)
+    padding: 6px
+    text-decoration: none
+
+    &:hover
+      background-color: rgb(0, 0, 255)
+
+    &:active
+      background-color: rgb(0, 0, 100)
+
+div
+  &.landing
+    color: white
+
+    a.button
+      color: #DDDDDD
+      background-color: rgba(200, 200, 200, 0.2)
+
+  &.helpHeader a.button, &.carousel a.button
+    color: #DDDDDD
+    background-color: rgba(200, 200, 200, 0.2)
+
+  &.landing a.button:hover, &.helpHeader a.button:hover, &.carousel a.button:hover
+    background-color: rgba(255, 255, 255, 0.4)
+
+  &.landing a.button:active, &.helpHeader a.button:active, &.carousel a.button:active
+    background-color: rgba(150, 150, 150, 0.4)
+
+img#projectsImageButton
+  display: none
+  content: url(/images/application-menu-dark.svg)
+
+html.light img#projectsImageButton
+  content: url(/images/application-menu.svg)
+
+img#searchImageButton
+  content: url(/images/search-dark.svg)
+
+html.light img#searchImageButton
+  content: url(/images/search.svg)
+
+div
+  &.searchContainer
+    display: flex
+    align-items: center
+    flex-shrink: 0
+
+  &.searchResults
+    display: flex
+    flex-direction: column
+    padding: 0px
+
+input.searchBox
+  margin: 10px
+  font-family: Contemporary, sans-serif
+  font-size: 12pt
+  background-color: var(--bg-color)
+  color: var(--fg-color)
+  border: none
+  border-left: 1px solid var(--fg-color)
+  border-bottom: 1px solid var(--fg-color)
+  outline: none
+  flex-grow: 1
+
+div.loader
+  background-image: url("/images/loader.svg")
+  width: 48px
+  height: 48px
+  background-repeat: no-repeat
+  background-size: cover
+  animation: spin 1s linear infinite
+
+li
+  margin-top: 3px
+  margin-bottom: 3px
+
+  p
+    margin-top: 0px
+    margin-bottom: 0px
+
+@media (max-width: 600px)
+  div.content
+    padding-left: 10px
+    padding-right: 10px
+
+@media (max-width: 450px)
+  div
+    &.mainHeader
+      justify-content: space-between
+
+      .headerTitle
+        padding-right: initial
+
+      .smileIcon
+        display: none
+
+    &.headerRightPadding
+      display: none
+
+  p#projectsButton
+    display: none
+
+  img#projectsImageButton
+    display: block
