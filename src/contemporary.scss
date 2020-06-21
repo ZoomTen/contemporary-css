@@ -1,68 +1,346 @@
-/* original css (c) Victor Tran */
-/* define Contemporary font*/
-@font-face {
-  font-family: 'Contemporary';
-  font-style: normal;
-  font-weight: 400;
-  src: local("Contemporary"), local("Contemporary-Regular"), url("/typeface/Contemporary-Regular.ttf");
-}
+// Contemporary.css
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes moveInFromTop {
-  from {
-    top: -48px;
-  }
-
-  to {
-    top: 0px;
-  }
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
+// Based on the original Qt widget theme by
+// Victor Tran
 
 .contemporary {
-  --bg-color:#282828;
-  --fg-color:white;
-  --bg-hover:#3c3c3c;
-  --bg-active:#1b1b1b;
-  --button-color:rgb(0, 0, 200);
-  --button-fg-color:white;
-  --link-color:rgb(0, 200, 255);
-  --link-active-color:rgb(255, 100, 100);
-  --sel-color:rgb(0, 80, 170);
-  --sel-hover:rgb(20, 60, 105);
+    --bg-color:#282828;
+    --fg-color:#fff;
+    --bg-hover:#3c3c3c;
+    --bg-active:#1b1b1b;
+    --link-color:rgb(0, 200, 255);
+    --link-active-color:rgb(255, 100, 100);
+    --sel-color:rgb(0, 80, 170);
+    --sel-hover:rgb(20, 60, 105);
 
-  &.light {
-    --bg-color:#ebebeb;
-    --fg-color:black;
-    --bg-hover:white;
-    --bg-active:#9d9d9d;
-    --link-color:rgb(0, 100, 255);
-    --link-active-color:red;
-    --sel-color:rgb(0, 200, 255);
-    --sel-hover:rgb(20, 220, 255);
-  }
+    --accent-color:rgb(0, 50, 150);
+    --accent-hover:rgb(0, 75, 225);
+    --accent-active:rgb(0, 33, 100);
+
+    &.light {
+        --bg-color:#d2d2d2;
+        --fg-color:#000;
+        --bg-hover:#fff;
+        --bg-active:#9d9d9d;
+        --link-color:rgb(0, 100, 255);
+        --link-active-color:red;
+        --sel-color:rgb(0, 200, 255);
+        --sel-hover:rgb(20, 220, 255);
+
+        --accent-color:rgb(0, 200, 255);
+        --accent-hover:rgb(127,228, 255);
+        --accent-active:rgb(0, 133, 170);
+
+        select{
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20version%3D%221.1%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m0%20300%20300-300v300z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E');
+        }
+
+        code{
+            background-color: rgba(0,0,0,.1);
+        }
+    }
+
+    *,*:before,*:after{
+        box-sizing: border-box;
+    }
+
+    @mixin sliderthumb{
+        width:1em;
+        height:1em;
+        background: var(--accent-color);
+        border-radius: 0;
+        border: 1px solid var(--fg-color);
+    }
+
+    // Firefox
+    scrollbar-color: var(--accent-color) var(--bg-color);
+    ::-moz-range-thumb{
+        appearance: none;
+        @include sliderthumb;
+    }
+
+    // Chrome + derivatives
+    ::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+        background: var(--bg-color);
+    }
+    ::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        @include sliderthumb;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+    }
+    ::-webkit-scrollbar-corner {
+        background: var(--bg-color);
+    }
+
+    // Begin
+    body{
+        background-color: var(--bg-color);
+        color: var(--fg-color);
+        font-family: 'Contemporary', sans-serif;
+        max-width: 80em;
+        margin: 0 auto;
+        padding: .6em 2em;
+    }
+
+    %headings{
+        margin-bottom: .5em;
+        padding-bottom: .4em;
+    }
+
+    %button{
+        font-family: inherit;
+        border: 0;
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: var(--fg-color);
+        padding: 0.6em 0.8em;
+        text-decoration: none;
+    }
+    %button-hover{
+        background-color: var(--accent-hover);
+    }
+    %button-transparent{
+        background-color: rgba(255,255,255,.25);
+        backdrop-filter:blur(10px); // fluent effect
+    }
+    %button-transparent-hover{
+        background-color: rgba(255,255,255,.5);
+    }
+    %button-active{
+        background-color: var(--accent-active);
+    }
+
+    %no-style-input{
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        font-family:inherit;
+        outline: 0;
+    }
+
+    %input-disabled{
+        opacity: 0.5;
+    }
+
+    h1{
+        @extend %headings;
+        border-bottom: 1px solid var(--fg-color);
+        font-size:1.666em;
+    }
+    h2{
+        @extend %headings;
+        font-size:1.25em;
+    }
+    h3{
+        @extend %headings;
+        font-size:1em;
+    }
+
+    a{
+        text-decoration: none;
+        color: var(--link-color);
+
+        &:active{
+            color: var(--link-active-color);
+        }
+
+        &.button{
+            @extend %button;
+            &.cta{
+                @extend %button-transparent;
+            }
+        }
+        &.button:hover{
+            @extend %button-hover;
+            &.cta{
+                @extend %button-transparent-hover;
+            }
+        }
+        &.button:active{
+            @extend %button-active;
+            &.cta{
+                @extend %button-transparent-hover;
+            }
+        }
+    }
+
+    button{
+        @extend %button;
+        &.cta{
+            @extend %button-transparent;
+        }
+    }
+    button:hover{
+        @extend %button-hover;
+        &.cta{
+            @extend %button-transparent-hover;
+        }
+    }
+    button:active{
+        @extend %button-active;
+        &.cta{
+            @extend %button-transparent-hover;
+        }
+    }
+
+    // inputs
+    input[type="checkbox"], input[type="radio"]{
+        @extend %no-style-input;
+        // hide the checkbox itself
+        appearance: none;
+        position: absolute;
+        visibility: hidden;
+
+        // unchecked box
+        & + label{
+            position: relative;
+        }
+        & + label:before{
+            content: '';
+            display: inline-block;
+            vertical-align: text-top;
+            margin-right: .25em;
+            width: 1em;
+            height: 1em;
+            border: 1px solid var(--fg-color);
+        }
+        &:checked + label:after{
+            background-color: var(--fg-color);
+            content: '';
+            display: inline-block;
+            vertical-align: text-top;
+            margin-right: .25em;
+            width: 1em;
+            height: 1em;
+            left: 0;
+            position: absolute;
+        }
+
+        &:disabled + label:before,
+        &:disabled + label:after{
+            @extend %input-disabled;
+        }
+    }
+    input[type="radio"]{
+        // unchecked radio
+        & + label:before{
+            border-radius: 100%;
+            width: 14px; // sorry!
+            height: 14px;
+            vertical-align: text-top;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 0 0 1px var(--fg-color);
+        }
+        &:checked + label:after{
+            border-radius: 100%;
+            width: 14px;
+            height: 14px;
+        }
+    }
+    input, textarea{
+        font-family:inherit;
+        background: none;
+        padding:.4em;
+        color: var(--fg-color);
+        border: 1px solid var(--fg-color);
+        &:disabled{
+            @extend %input-disabled;
+        }
+    }
+    select{
+        @extend %no-style-input;
+        background: none;
+        padding:.2em;
+        padding-right: 1em;
+        color: var(--fg-color);
+        border: 1px solid var(--fg-color);
+        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20version%3D%221.1%22%20viewBox%3D%220%200%20300%20300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m0%20300%20300-300v300z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-position: right .1em bottom .1em;
+        background-size:0.5em;
+
+        &::-ms-expand{
+            // hide arrow in IE
+            display:none;
+        }
+        &:disabled{
+            @extend %input-disabled;
+        }
+    }
+    input[type="number"]{
+        @extend %no-style-input;
+    }
+    input[type="range"]{
+        @extend %no-style-input;
+        padding: 0;
+        height: 1em;
+    }
+    input[type="submit"]{
+        @extend %button;
+        &:hover{
+            @extend %button-hover;
+        }
+        &:active{
+            @extend %button-active;
+        }
+    }
+
+    // form
+    fieldset{
+        border: 1px solid var(--fg-color);
+    }
+
+    // tables
+    table{
+        // uniform table
+        border-spacing: 0;
+        border-collapse: collapse;
+        th, td{
+            border: 1px solid var(--fg-color);
+            margin:0;
+            padding: .3em .5em;
+        }
+        th{
+            background-color: var(--accent-color);
+        }
+    }
+
+    // code
+    code{
+        background-color: rgba(0,0,0,.4);
+        padding: .5em  .7em;
+        display: block;
+    }
+    p > code{
+        display: inline-block;
+    }
+
+    // presentational divs, if you miss that grid look
+    // taken from neocities element.css
+    .row{
+        display: block;
+    }
+    .col{
+        display: inline;
+    }
+    @media (min-width: 48em) {
+        .row {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+        .col {
+            display: table-cell;
+            padding-right: 2%;
+        }
+        .col:last-child {
+            padding-left: 2%;
+            padding-right: 0;
+        }
+    }
+
 }
